@@ -9,6 +9,7 @@
 .brand a {
   color: #222222;
 }
+.brand a:active,
 .brand a:hover {
   text-decoration: none;
 }
