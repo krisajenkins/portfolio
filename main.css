@@ -1,0 +1,23 @@
+#page {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+#page #mainContent {
+  flex: 1;
+}
+.brand a {
+  color: #222222;
+}
+.brand a:hover {
+  text-decoration: none;
+}
+.tag.label,
+.tag.btn {
+  margin-bottom: 5px;
+  margin-right: 5px;
+}
+footer nav.navbar {
+  margin-top: 20px;
+  margin-bottom: 0;
+}
