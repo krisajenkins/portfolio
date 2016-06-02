@@ -6,8 +6,11 @@
 #page #mainContent {
   flex: 1;
 }
+.brand {
+  background-color: #5bc0de;
+}
 .brand a {
-  color: #222222;
+  color: white;
 }
 .brand a:active,
 .brand a:hover {
