@@ -9657,7 +9657,8 @@ var _user$project$Projects$data = _elm_lang$core$Native_List.fromArray(
 	[
 		{name: 'YeSQL', website: 'https://github.com/krisajenkins/yesql'},
 		{name: 'Elm Dialog', website: 'http://package.elm-lang.org/packages/krisajenkins/elm-dialog/latest'},
-		{name: 'Elm Extensions', website: 'http://package.elm-lang.org/packages/krisajenkins/elm-exts/latest'}
+		{name: 'Elm Extensions', website: 'http://package.elm-lang.org/packages/krisajenkins/elm-exts/latest'},
+		{name: 'Petrol', website: 'https://github.com/krisajenkins/petrol'}
 	]);
 
 var _user$project$State$urlUpdate = F2(
@@ -9777,7 +9778,7 @@ var _user$project$View_About$root = A2(
 	_evancz$elm_markdown$Markdown$toHtml,
 	_elm_lang$core$Native_List.fromArray(
 		[]),
-	'\n# About Us\n\nClearer Code is a software development agency specialising in\nFunctional Programming.\n\nFunctional programming is a real revolution for our industry,\npreserving the practicality of existing languages and putting them on\na more solid theortical foundation, so we can build better, more\nreliable systems in less time.\n\nWe use great languages like [Elm], [Haskell] & [Clojure] to deliver\nfeatures without compromising code-quality.\n\n[Elm]: http://elm-lang.org/\n[Haskell]: https://www.haskell.org/\n[Clojure]: https://clojure.org/\n');
+	'\n# About Us\n\nClearer Code is a software development agency specialising in\nFunctional Programming.\n\nFunctional programming is a real revolution for our industry,\npreserving the practicality of existing languages and putting them on\na more solid theoretical foundation, so we can build better, more\nreliable systems in less time.\n\nWe use great languages like [Elm], [Haskell] & [Clojure] to deliver\nfeatures without compromising code-quality.\n\n[Elm]: http://elm-lang.org/\n[Haskell]: https://www.haskell.org/\n[Clojure]: https://clojure.org/\n');
 
 var _user$project$View$tagDetailView = F2(
 	function (router, tag) {
