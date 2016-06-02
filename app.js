@@ -2524,6 +2524,136 @@ var _elm_lang$core$Platform_Sub$none = _elm_lang$core$Platform_Sub$batch(
 var _elm_lang$core$Platform_Sub$map = _elm_lang$core$Native_Platform.map;
 var _elm_lang$core$Platform_Sub$Sub = {ctor: 'Sub'};
 
+var _elm_community$easing_functions$Ease$reverse = F2(
+	function (easing, time) {
+		return easing(1 - time);
+	});
+var _elm_community$easing_functions$Ease$flip = F2(
+	function (easing, time) {
+		return 1 - easing(1 - time);
+	});
+var _elm_community$easing_functions$Ease$retour = F2(
+	function (easing, time) {
+		return (_elm_lang$core$Native_Utils.cmp(time, 0.5) < 0) ? easing(time * 2) : A2(_elm_community$easing_functions$Ease$flip, easing, (time - 0.5) * 2);
+	});
+var _elm_community$easing_functions$Ease$inOut = F3(
+	function (e1, e2, time) {
+		return (_elm_lang$core$Native_Utils.cmp(time, 0.5) < 0) ? (e1(time * 2) / 2) : (0.5 + (e2((time - 0.5) * 2) / 2));
+	});
+var _elm_community$easing_functions$Ease$inElastic = function (time) {
+	if (_elm_lang$core$Native_Utils.eq(time, 0.0)) {
+		return 0.0;
+	} else {
+		var t$ = time - 1;
+		var p = 0.3;
+		var s = 7.5e-2;
+		return 0 - (Math.pow(2, 10 * t$) * _elm_lang$core$Basics$sin(((t$ - s) * (2 * _elm_lang$core$Basics$pi)) / p));
+	}
+};
+var _elm_community$easing_functions$Ease$outElastic = _elm_community$easing_functions$Ease$flip(_elm_community$easing_functions$Ease$inElastic);
+var _elm_community$easing_functions$Ease$inOutElastic = A2(_elm_community$easing_functions$Ease$inOut, _elm_community$easing_functions$Ease$inElastic, _elm_community$easing_functions$Ease$outElastic);
+var _elm_community$easing_functions$Ease$outBounce = function (time) {
+	var t4 = time - (2.625 / 2.75);
+	var t3 = time - (2.25 / 2.75);
+	var t2 = time - (1.5 / 2.75);
+	var a = 7.5625;
+	return (_elm_lang$core$Native_Utils.cmp(time, 1 / 2.75) < 0) ? ((a * time) * time) : ((_elm_lang$core$Native_Utils.cmp(time, 2 / 2.75) < 0) ? (((a * t2) * t2) + 0.75) : ((_elm_lang$core$Native_Utils.cmp(time, 2.5 / 2.75) < 0) ? (((a * t3) * t3) + 0.9375) : (((a * t4) * t4) + 0.984375)));
+};
+var _elm_community$easing_functions$Ease$inBounce = _elm_community$easing_functions$Ease$flip(_elm_community$easing_functions$Ease$outBounce);
+var _elm_community$easing_functions$Ease$inOutBounce = A2(_elm_community$easing_functions$Ease$inOut, _elm_community$easing_functions$Ease$inBounce, _elm_community$easing_functions$Ease$outBounce);
+var _elm_community$easing_functions$Ease$inBack = function (time) {
+	return (time * time) * ((2.70158 * time) - 1.70158);
+};
+var _elm_community$easing_functions$Ease$outBack = _elm_community$easing_functions$Ease$flip(_elm_community$easing_functions$Ease$inBack);
+var _elm_community$easing_functions$Ease$inOutBack = A2(_elm_community$easing_functions$Ease$inOut, _elm_community$easing_functions$Ease$inBack, _elm_community$easing_functions$Ease$outBack);
+var _elm_community$easing_functions$Ease$outCirc = function (time) {
+	return _elm_lang$core$Basics$sqrt(
+		1 - Math.pow(time - 1, 2));
+};
+var _elm_community$easing_functions$Ease$inCirc = _elm_community$easing_functions$Ease$flip(_elm_community$easing_functions$Ease$outCirc);
+var _elm_community$easing_functions$Ease$inOutCirc = A2(_elm_community$easing_functions$Ease$inOut, _elm_community$easing_functions$Ease$inCirc, _elm_community$easing_functions$Ease$outCirc);
+var _elm_community$easing_functions$Ease$inExpo = function (time) {
+	return _elm_lang$core$Native_Utils.eq(time, 0.0) ? 0.0 : Math.pow(2, 10 * (time - 1));
+};
+var _elm_community$easing_functions$Ease$outExpo = _elm_community$easing_functions$Ease$flip(_elm_community$easing_functions$Ease$inExpo);
+var _elm_community$easing_functions$Ease$inOutExpo = A2(_elm_community$easing_functions$Ease$inOut, _elm_community$easing_functions$Ease$inExpo, _elm_community$easing_functions$Ease$outExpo);
+var _elm_community$easing_functions$Ease$outSine = function (time) {
+	return _elm_lang$core$Basics$sin(time * (_elm_lang$core$Basics$pi / 2));
+};
+var _elm_community$easing_functions$Ease$inSine = _elm_community$easing_functions$Ease$flip(_elm_community$easing_functions$Ease$outSine);
+var _elm_community$easing_functions$Ease$inOutSine = A2(_elm_community$easing_functions$Ease$inOut, _elm_community$easing_functions$Ease$inSine, _elm_community$easing_functions$Ease$outSine);
+var _elm_community$easing_functions$Ease$inQuint = function (time) {
+	return Math.pow(time, 5);
+};
+var _elm_community$easing_functions$Ease$outQuint = _elm_community$easing_functions$Ease$flip(_elm_community$easing_functions$Ease$inQuint);
+var _elm_community$easing_functions$Ease$inOutQuint = A2(_elm_community$easing_functions$Ease$inOut, _elm_community$easing_functions$Ease$inQuint, _elm_community$easing_functions$Ease$outQuint);
+var _elm_community$easing_functions$Ease$inQuart = function (time) {
+	return Math.pow(time, 4);
+};
+var _elm_community$easing_functions$Ease$outQuart = _elm_community$easing_functions$Ease$flip(_elm_community$easing_functions$Ease$inQuart);
+var _elm_community$easing_functions$Ease$inOutQuart = A2(_elm_community$easing_functions$Ease$inOut, _elm_community$easing_functions$Ease$inQuart, _elm_community$easing_functions$Ease$outQuart);
+var _elm_community$easing_functions$Ease$inCubic = function (time) {
+	return Math.pow(time, 3);
+};
+var _elm_community$easing_functions$Ease$outCubic = _elm_community$easing_functions$Ease$flip(_elm_community$easing_functions$Ease$inCubic);
+var _elm_community$easing_functions$Ease$inOutCubic = A2(_elm_community$easing_functions$Ease$inOut, _elm_community$easing_functions$Ease$inCubic, _elm_community$easing_functions$Ease$outCubic);
+var _elm_community$easing_functions$Ease$inQuad = function (time) {
+	return Math.pow(time, 2);
+};
+var _elm_community$easing_functions$Ease$outQuad = _elm_community$easing_functions$Ease$flip(_elm_community$easing_functions$Ease$inQuad);
+var _elm_community$easing_functions$Ease$inOutQuad = A2(_elm_community$easing_functions$Ease$inOut, _elm_community$easing_functions$Ease$inQuad, _elm_community$easing_functions$Ease$outQuad);
+var _elm_community$easing_functions$Ease$bezier = F5(
+	function (x1, y1, x2, y2, time) {
+		var pair = F4(
+			function (interpolate, _p1, _p0, v) {
+				var _p2 = _p1;
+				var _p3 = _p0;
+				return {
+					ctor: '_Tuple2',
+					_0: A3(interpolate, _p2._0, _p3._0, v),
+					_1: A3(interpolate, _p2._1, _p3._1, v)
+				};
+			});
+		var lerp = F3(
+			function (from, to, v) {
+				return from + ((to - from) * v);
+			});
+		var casteljau = function (ps) {
+			casteljau:
+			while (true) {
+				var _p4 = ps;
+				if (((_p4.ctor === '::') && (_p4._0.ctor === '_Tuple2')) && (_p4._1.ctor === '[]')) {
+					return _p4._0._1;
+				} else {
+					var _p5 = _p4;
+					var _v3 = A3(
+						_elm_lang$core$List$map2,
+						F2(
+							function (x, y) {
+								return A4(pair, lerp, x, y, time);
+							}),
+						_p5,
+						A2(
+							_elm_lang$core$Maybe$withDefault,
+							_elm_lang$core$Native_List.fromArray(
+								[]),
+							_elm_lang$core$List$tail(_p5)));
+					ps = _v3;
+					continue casteljau;
+				}
+			}
+		};
+		return casteljau(
+			_elm_lang$core$Native_List.fromArray(
+				[
+					{ctor: '_Tuple2', _0: 0, _1: 0},
+					{ctor: '_Tuple2', _0: x1, _1: y1},
+					{ctor: '_Tuple2', _0: x2, _1: y2},
+					{ctor: '_Tuple2', _0: 1, _1: 1}
+				]));
+	});
+var _elm_community$easing_functions$Ease$linear = _elm_lang$core$Basics$identity;
+
 //import Native.List //
 
 var _elm_lang$core$Native_Array = function() {
@@ -7369,9 +7499,186 @@ var _elm_lang$core$Set$partition = F2(
 		};
 	});
 
+var _elm_lang$animation_frame$Native_AnimationFrame = function()
+{
+
+var hasStartTime =
+	window.performance &&
+	window.performance.timing &&
+	window.performance.timing.navigationStart;
+
+var navStart = hasStartTime
+	? window.performance.timing.navigationStart
+	: Date.now();
+
+var rAF = _elm_lang$core$Native_Scheduler.nativeBinding(function(callback)
+{
+	var id = requestAnimationFrame(function(time) {
+		var timeNow = time
+			? (time > navStart ? time : time + navStart)
+			: Date.now();
+
+		callback(_elm_lang$core$Native_Scheduler.succeed(timeNow));
+	});
+
+	return function() {
+		cancelAnimationFrame(id);
+	};
+});
+
+return {
+	rAF: rAF
+};
+
+}();
+
 var _elm_lang$core$Process$kill = _elm_lang$core$Native_Scheduler.kill;
 var _elm_lang$core$Process$sleep = _elm_lang$core$Native_Scheduler.sleep;
 var _elm_lang$core$Process$spawn = _elm_lang$core$Native_Scheduler.spawn;
+
+var _elm_lang$animation_frame$AnimationFrame$rAF = _elm_lang$animation_frame$Native_AnimationFrame.rAF;
+var _elm_lang$animation_frame$AnimationFrame$subscription = _elm_lang$core$Native_Platform.leaf('AnimationFrame');
+var _elm_lang$animation_frame$AnimationFrame$State = F3(
+	function (a, b, c) {
+		return {subs: a, request: b, oldTime: c};
+	});
+var _elm_lang$animation_frame$AnimationFrame$init = _elm_lang$core$Task$succeed(
+	A3(
+		_elm_lang$animation_frame$AnimationFrame$State,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Maybe$Nothing,
+		0));
+var _elm_lang$animation_frame$AnimationFrame$onEffects = F3(
+	function (router, subs, _p0) {
+		var _p1 = _p0;
+		var _p5 = _p1.request;
+		var _p4 = _p1.oldTime;
+		var _p2 = {ctor: '_Tuple2', _0: _p5, _1: subs};
+		if (_p2._0.ctor === 'Nothing') {
+			if (_p2._1.ctor === '[]') {
+				return _elm_lang$core$Task$succeed(
+					A3(
+						_elm_lang$animation_frame$AnimationFrame$State,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Maybe$Nothing,
+						_p4));
+			} else {
+				return A2(
+					_elm_lang$core$Task$andThen,
+					_elm_lang$core$Process$spawn(
+						A2(
+							_elm_lang$core$Task$andThen,
+							_elm_lang$animation_frame$AnimationFrame$rAF,
+							_elm_lang$core$Platform$sendToSelf(router))),
+					function (pid) {
+						return A2(
+							_elm_lang$core$Task$andThen,
+							_elm_lang$core$Time$now,
+							function (time) {
+								return _elm_lang$core$Task$succeed(
+									A3(
+										_elm_lang$animation_frame$AnimationFrame$State,
+										subs,
+										_elm_lang$core$Maybe$Just(pid),
+										time));
+							});
+					});
+			}
+		} else {
+			if (_p2._1.ctor === '[]') {
+				return A2(
+					_elm_lang$core$Task$andThen,
+					_elm_lang$core$Process$kill(_p2._0._0),
+					function (_p3) {
+						return _elm_lang$core$Task$succeed(
+							A3(
+								_elm_lang$animation_frame$AnimationFrame$State,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Maybe$Nothing,
+								_p4));
+					});
+			} else {
+				return _elm_lang$core$Task$succeed(
+					A3(_elm_lang$animation_frame$AnimationFrame$State, subs, _p5, _p4));
+			}
+		}
+	});
+var _elm_lang$animation_frame$AnimationFrame$onSelfMsg = F3(
+	function (router, newTime, _p6) {
+		var _p7 = _p6;
+		var _p10 = _p7.subs;
+		var diff = newTime - _p7.oldTime;
+		var send = function (sub) {
+			var _p8 = sub;
+			if (_p8.ctor === 'Time') {
+				return A2(
+					_elm_lang$core$Platform$sendToApp,
+					router,
+					_p8._0(newTime));
+			} else {
+				return A2(
+					_elm_lang$core$Platform$sendToApp,
+					router,
+					_p8._0(diff));
+			}
+		};
+		return A2(
+			_elm_lang$core$Task$andThen,
+			_elm_lang$core$Process$spawn(
+				A2(
+					_elm_lang$core$Task$andThen,
+					_elm_lang$animation_frame$AnimationFrame$rAF,
+					_elm_lang$core$Platform$sendToSelf(router))),
+			function (pid) {
+				return A2(
+					_elm_lang$core$Task$andThen,
+					_elm_lang$core$Task$sequence(
+						A2(_elm_lang$core$List$map, send, _p10)),
+					function (_p9) {
+						return _elm_lang$core$Task$succeed(
+							A3(
+								_elm_lang$animation_frame$AnimationFrame$State,
+								_p10,
+								_elm_lang$core$Maybe$Just(pid),
+								newTime));
+					});
+			});
+	});
+var _elm_lang$animation_frame$AnimationFrame$Diff = function (a) {
+	return {ctor: 'Diff', _0: a};
+};
+var _elm_lang$animation_frame$AnimationFrame$diffs = function (tagger) {
+	return _elm_lang$animation_frame$AnimationFrame$subscription(
+		_elm_lang$animation_frame$AnimationFrame$Diff(tagger));
+};
+var _elm_lang$animation_frame$AnimationFrame$Time = function (a) {
+	return {ctor: 'Time', _0: a};
+};
+var _elm_lang$animation_frame$AnimationFrame$times = function (tagger) {
+	return _elm_lang$animation_frame$AnimationFrame$subscription(
+		_elm_lang$animation_frame$AnimationFrame$Time(tagger));
+};
+var _elm_lang$animation_frame$AnimationFrame$subMap = F2(
+	function (func, sub) {
+		var _p11 = sub;
+		if (_p11.ctor === 'Time') {
+			return _elm_lang$animation_frame$AnimationFrame$Time(
+				function (_p12) {
+					return func(
+						_p11._0(_p12));
+				});
+		} else {
+			return _elm_lang$animation_frame$AnimationFrame$Diff(
+				function (_p13) {
+					return func(
+						_p11._0(_p13));
+				});
+		}
+	});
+_elm_lang$core$Native_Platform.effectManagers['AnimationFrame'] = {pkg: 'elm-lang/animation-frame', init: _elm_lang$animation_frame$AnimationFrame$init, onEffects: _elm_lang$animation_frame$AnimationFrame$onEffects, onSelfMsg: _elm_lang$animation_frame$AnimationFrame$onSelfMsg, tag: 'sub', subMap: _elm_lang$animation_frame$AnimationFrame$subMap};
 
 var _elm_lang$dom$Native_Dom = function() {
 
@@ -8108,6 +8415,280 @@ var _elm_lang$navigation$Navigation$subMap = F2(
 			});
 	});
 _elm_lang$core$Native_Platform.effectManagers['Navigation'] = {pkg: 'elm-lang/navigation', init: _elm_lang$navigation$Navigation$init, onEffects: _elm_lang$navigation$Navigation$onEffects, onSelfMsg: _elm_lang$navigation$Navigation$onSelfMsg, tag: 'fx', cmdMap: _elm_lang$navigation$Navigation$cmdMap, subMap: _elm_lang$navigation$Navigation$subMap};
+
+var _etaque$elm_transit$Transit$delay = F2(
+	function (time, task) {
+		return A2(
+			_elm_lang$core$Task$andThen,
+			_elm_lang$core$Process$sleep(time),
+			function (_p0) {
+				return task;
+			});
+	});
+var _etaque$elm_transit$Transit$never = function (n) {
+	never:
+	while (true) {
+		var _v0 = n;
+		n = _v0;
+		continue never;
+	}
+};
+var _etaque$elm_transit$Transit$performSucceed = _elm_lang$core$Task$perform(_etaque$elm_transit$Transit$never);
+var _etaque$elm_transit$Transit$getStep = function (_p1) {
+	var _p2 = _p1;
+	return _p2._0.step;
+};
+var _etaque$elm_transit$Transit$getValue = function (_p3) {
+	var _p4 = _p3;
+	return _p4._0.value;
+};
+var _etaque$elm_transit$Transit$getState = function (transition) {
+	var _p5 = transition;
+	return _p5._0;
+};
+var _etaque$elm_transit$Transit$State = F4(
+	function (a, b, c, d) {
+		return {step: a, start: b, value: c, durations: d};
+	});
+var _etaque$elm_transit$Transit$T = function (a) {
+	return {ctor: 'T', _0: a};
+};
+var _etaque$elm_transit$Transit$Done = {ctor: 'Done'};
+var _etaque$elm_transit$Transit$initialState = {
+	step: _etaque$elm_transit$Transit$Done,
+	start: 0,
+	value: 1,
+	durations: {ctor: '_Tuple2', _0: 0, _1: 0}
+};
+var _etaque$elm_transit$Transit$empty = _etaque$elm_transit$Transit$T(_etaque$elm_transit$Transit$initialState);
+var _etaque$elm_transit$Transit$Enter = {ctor: 'Enter'};
+var _etaque$elm_transit$Transit$Exit = {ctor: 'Exit'};
+var _etaque$elm_transit$Transit$EmitMsg = F2(
+	function (a, b) {
+		return {ctor: 'EmitMsg', _0: a, _1: b};
+	});
+var _etaque$elm_transit$Transit$tick = F3(
+	function (tagger, msg, parent) {
+		var tag = function (_p6) {
+			var _p7 = _p6;
+			return {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_Utils.update(
+					parent,
+					{
+						transition: _etaque$elm_transit$Transit$T(_p7._0)
+					}),
+				_1: A2(_elm_lang$core$Platform_Cmd$map, tagger, _p7._1)
+			};
+		};
+		var state = _etaque$elm_transit$Transit$getState(parent.transition);
+		var _p8 = msg;
+		switch (_p8.ctor) {
+			case 'Start':
+				var _p9 = _p8._1;
+				var emitTask = _elm_lang$core$Task$succeed(
+					A2(_etaque$elm_transit$Transit$EmitMsg, _p8._0, _p9));
+				var emitCmd = A2(
+					_etaque$elm_transit$Transit$performSucceed,
+					_elm_lang$core$Basics$identity,
+					A2(
+						_etaque$elm_transit$Transit$delay,
+						_elm_lang$core$Basics$fst(state.durations),
+						emitTask));
+				return tag(
+					{
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							state,
+							{step: _etaque$elm_transit$Transit$Exit, start: _p9}),
+						_1: emitCmd
+					});
+			case 'EmitMsg':
+				return _elm_lang$core$Native_Utils.eq(_p8._1, state.start) ? {
+					ctor: '_Tuple2',
+					_0: parent,
+					_1: A2(
+						_etaque$elm_transit$Transit$performSucceed,
+						_elm_lang$core$Basics$identity,
+						_elm_lang$core$Task$succeed(_p8._0))
+				} : {ctor: '_Tuple2', _0: parent, _1: _elm_lang$core$Platform_Cmd$none};
+			default:
+				var _p11 = _p8._0;
+				var _p10 = state.step;
+				switch (_p10.ctor) {
+					case 'Exit':
+						return (_elm_lang$core$Native_Utils.cmp(
+							_p11,
+							state.start + _elm_lang$core$Basics$fst(state.durations)) < 0) ? tag(
+							{
+								ctor: '_Tuple2',
+								_0: _elm_lang$core$Native_Utils.update(
+									state,
+									{
+										step: _etaque$elm_transit$Transit$Exit,
+										value: 1 - ((_p11 - state.start) / _elm_lang$core$Basics$fst(state.durations))
+									}),
+								_1: _elm_lang$core$Platform_Cmd$none
+							}) : tag(
+							{
+								ctor: '_Tuple2',
+								_0: _elm_lang$core$Native_Utils.update(
+									state,
+									{step: _etaque$elm_transit$Transit$Enter, value: 0}),
+								_1: _elm_lang$core$Platform_Cmd$none
+							});
+					case 'Enter':
+						return (_elm_lang$core$Native_Utils.cmp(
+							_p11,
+							(state.start + _elm_lang$core$Basics$fst(state.durations)) + _elm_lang$core$Basics$snd(state.durations)) < 0) ? tag(
+							{
+								ctor: '_Tuple2',
+								_0: _elm_lang$core$Native_Utils.update(
+									state,
+									{
+										value: ((_p11 - state.start) - _elm_lang$core$Basics$fst(state.durations)) / _elm_lang$core$Basics$snd(state.durations)
+									}),
+								_1: _elm_lang$core$Platform_Cmd$none
+							}) : tag(
+							{
+								ctor: '_Tuple2',
+								_0: _elm_lang$core$Native_Utils.update(
+									state,
+									{step: _etaque$elm_transit$Transit$Done, value: 1}),
+								_1: _elm_lang$core$Platform_Cmd$none
+							});
+					default:
+						return {ctor: '_Tuple2', _0: parent, _1: _elm_lang$core$Platform_Cmd$none};
+				}
+		}
+	});
+var _etaque$elm_transit$Transit$Tick = function (a) {
+	return {ctor: 'Tick', _0: a};
+};
+var _etaque$elm_transit$Transit$subscriptions = F2(
+	function (tagger, parent) {
+		var _p12 = _etaque$elm_transit$Transit$getStep(parent.transition);
+		if (_p12.ctor === 'Done') {
+			return _elm_lang$core$Platform_Sub$none;
+		} else {
+			return _elm_lang$animation_frame$AnimationFrame$times(
+				function (_p13) {
+					return tagger(
+						_etaque$elm_transit$Transit$Tick(_p13));
+				});
+		}
+	});
+var _etaque$elm_transit$Transit$Start = F2(
+	function (a, b) {
+		return {ctor: 'Start', _0: a, _1: b};
+	});
+var _etaque$elm_transit$Transit$start = F4(
+	function (tagger, parentMsg, durations, parent) {
+		var cmd = A2(
+			_elm_lang$core$Platform_Cmd$map,
+			tagger,
+			A2(
+				_etaque$elm_transit$Transit$performSucceed,
+				_etaque$elm_transit$Transit$Start(parentMsg),
+				_elm_lang$core$Time$now));
+		var state = _etaque$elm_transit$Transit$getState(parent.transition);
+		var newState = _elm_lang$core$Native_Utils.update(
+			state,
+			{durations: durations});
+		return {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Native_Utils.update(
+				parent,
+				{
+					transition: _etaque$elm_transit$Transit$T(newState)
+				}),
+			_1: cmd
+		};
+	});
+
+var _etaque$elm_transit_style$TransitStyle$translateX = function (v) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			{
+			ctor: '_Tuple2',
+			_0: 'transform',
+			_1: A2(
+				_elm_lang$core$Basics_ops['++'],
+				'translateX(',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$Basics$toString(v),
+					'px)'))
+		}
+		]);
+};
+var _etaque$elm_transit_style$TransitStyle$opacity = function (v) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			{
+			ctor: '_Tuple2',
+			_0: 'opacity',
+			_1: _elm_lang$core$Basics$toString(v)
+		}
+		]);
+};
+var _etaque$elm_transit_style$TransitStyle$fadeIn = function (v) {
+	return _etaque$elm_transit_style$TransitStyle$opacity(
+		_elm_community$easing_functions$Ease$outCubic(v));
+};
+var _etaque$elm_transit_style$TransitStyle$fadeOut = function (v) {
+	return _etaque$elm_transit_style$TransitStyle$opacity(
+		_elm_community$easing_functions$Ease$inCubic(v));
+};
+var _etaque$elm_transit_style$TransitStyle$slideIn = F2(
+	function (offset, v) {
+		return _etaque$elm_transit_style$TransitStyle$translateX(
+			_elm_community$easing_functions$Ease$inCubic(1 - v) * offset);
+	});
+var _etaque$elm_transit_style$TransitStyle$slideOut = F2(
+	function (offset, v) {
+		return _etaque$elm_transit_style$TransitStyle$translateX(
+			_elm_community$easing_functions$Ease$outCubic(1 - v) * offset);
+	});
+var _etaque$elm_transit_style$TransitStyle$compose = F3(
+	function (exit, enter, transition) {
+		var _p0 = {
+			ctor: '_Tuple2',
+			_0: _etaque$elm_transit$Transit$getStep(transition),
+			_1: _etaque$elm_transit$Transit$getValue(transition)
+		};
+		_v0_2:
+		do {
+			if (_p0.ctor === '_Tuple2') {
+				switch (_p0._0.ctor) {
+					case 'Exit':
+						return exit(_p0._1);
+					case 'Enter':
+						return enter(_p0._1);
+					default:
+						break _v0_2;
+				}
+			} else {
+				break _v0_2;
+			}
+		} while(false);
+		return _elm_lang$core$Native_List.fromArray(
+			[]);
+	});
+var _etaque$elm_transit_style$TransitStyle$slide = function (offset) {
+	return A2(
+		_etaque$elm_transit_style$TransitStyle$compose,
+		_etaque$elm_transit_style$TransitStyle$slideOut(offset),
+		_etaque$elm_transit_style$TransitStyle$slideIn(offset));
+};
+var _etaque$elm_transit_style$TransitStyle$fade = A2(_etaque$elm_transit_style$TransitStyle$compose, _etaque$elm_transit_style$TransitStyle$fadeOut, _etaque$elm_transit_style$TransitStyle$fadeIn);
+var _etaque$elm_transit_style$TransitStyle$fadeSlide = F2(
+	function (offset, t) {
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			A2(_etaque$elm_transit_style$TransitStyle$slide, offset, t),
+			_etaque$elm_transit_style$TransitStyle$fade(t));
+	});
 
 var _evancz$elm_markdown$Native_Markdown = function() {
 
@@ -8852,11 +9433,16 @@ var _user$project$Types$Project = F2(
 	function (a, b) {
 		return {name: a, website: b};
 	});
-var _user$project$Types$Model = F3(
-	function (a, b, c) {
-		return {view: a, clients: b, projects: c};
+var _user$project$Types$Model = F4(
+	function (a, b, c, d) {
+		return {view: a, transition: b, clients: c, projects: d};
 	});
-var _user$project$Types$NoOp = {ctor: 'NoOp'};
+var _user$project$Types$SetView = function (a) {
+	return {ctor: 'SetView', _0: a};
+};
+var _user$project$Types$TransitMsg = function (a) {
+	return {ctor: 'TransitMsg', _0: a};
+};
 var _user$project$Types$NotFound = {ctor: 'NotFound'};
 var _user$project$Types$ByClient = function (a) {
 	return {ctor: 'ByClient', _0: a};
@@ -9076,26 +9662,35 @@ var _user$project$Projects$data = _elm_lang$core$Native_List.fromArray(
 
 var _user$project$State$urlUpdate = F2(
 	function (view, model) {
-		return {
-			ctor: '_Tuple2',
-			_0: _elm_lang$core$Native_Utils.update(
-				model,
-				{view: view}),
-			_1: _elm_lang$core$Platform_Cmd$none
-		};
+		return A4(
+			_etaque$elm_transit$Transit$start,
+			_user$project$Types$TransitMsg,
+			_user$project$Types$SetView(view),
+			{ctor: '_Tuple2', _0: 100 * _elm_lang$core$Time$millisecond, _1: 200 * _elm_lang$core$Time$millisecond},
+			model);
 	});
 var _user$project$State$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
-		return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		if (_p0.ctor === 'TransitMsg') {
+			return A3(_etaque$elm_transit$Transit$tick, _user$project$Types$TransitMsg, _p0._0, model);
+		} else {
+			return {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_Utils.update(
+					model,
+					{view: _p0._0}),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
+		}
 	});
-var _user$project$State$subscriptions = function (_p1) {
-	return _elm_lang$core$Platform_Sub$none;
+var _user$project$State$subscriptions = function (model) {
+	return A2(_etaque$elm_transit$Transit$subscriptions, _user$project$Types$TransitMsg, model);
 };
 var _user$project$State$initialState = function (view) {
 	return {
 		ctor: '_Tuple2',
-		_0: {view: view, clients: _user$project$Clients$data, projects: _user$project$Projects$data},
+		_0: {view: view, transition: _etaque$elm_transit$Transit$empty, clients: _user$project$Clients$data, projects: _user$project$Projects$data},
 		_1: _elm_lang$core$Platform_Cmd$none
 	};
 };
@@ -9548,7 +10143,14 @@ var _user$project$View$root = F2(
 												]))
 										]))
 								])),
-							_krisajenkins$elm_exts$Exts_Html_Bootstrap$container(
+							A2(
+							_elm_lang$html$Html$div,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$class('container'),
+									_elm_lang$html$Html_Attributes$style(
+									_etaque$elm_transit_style$TransitStyle$fade(model.transition))
+								]),
 							_elm_lang$core$Native_List.fromArray(
 								[
 									_krisajenkins$elm_exts$Exts_Html_Bootstrap$row(
